@@ -18,6 +18,26 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
+const weapons = [
+    {
+        name : "stick",
+        power: 5
+
+    },
+    {
+        name: "dagger",
+        power : 30
+    },
+    {
+        name:"claw hammer",
+        power : 50
+    },
+    {
+        name: "sword",
+        power : 100
+    }
+];
+
 const locations =[{
     name : "town square",
     "button text" : ["Go to store","Go to cave","Fight dragon"],
@@ -30,6 +50,13 @@ const locations =[{
         "button functions" :[buyHealth,buyWeapon,goTown],
         text: "You enter the store."
 
+    },
+    {
+     name: "cave",
+     "button text" : ["Fight slime","Fight fanged beast","Go to town square"],
+     "button functions" : [fightSlime, fightBeast, goTown],
+     text : "You enter the cave. You see some monsters."
+        
     }
 
 ];
@@ -45,13 +72,11 @@ function goTown(){
 }
 
 function goStore(){
-
-   
-
+    update(locations[1]);
 }
 
 function goCave(){
-    console.log("Going to cave.");
+    update(locations[2]);
 }
 
 function fightDragon(){
@@ -59,10 +84,30 @@ function fightDragon(){
 }
 
 function buyHealth(){
+    
+    if(gold>= 10){
+
+        gold -=10;
+        health += 10;
+
+        goldText.innerText = gold;
+        healthText.innerText = health;
+    } else{
+       text.innerText = "You do not have enough gold to buy health." ;
+    }
 
 }
 
 function buyWeapon(){
+    if(gold>= 30){
+        gold -= 30;
+        currentWeapon++;
+
+        goldText.innerText = gold;
+        let newWeapon = weapons[currentWeapon].name;
+        text.innerText = "You now have a "+newWeapon+".";
+
+    }
 
 }
 
@@ -73,8 +118,14 @@ function update(location){
   button1.onclick = location["button functions"][0];
   button2.onclick = location["button functions"][1];
   button3.onclick = location["button functions"][2];
-  text.innerText = location[text];
+  text.innerText = location.text;
 
 }
 
+function fightSlime(){
+
+}
+function fightBeast(){
+
+}
 
