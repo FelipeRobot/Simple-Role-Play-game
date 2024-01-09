@@ -105,6 +105,13 @@ const locations =[{
         "button text" : ["REPLAY?","REPLAY?","REPLAY?" ],
         "button functions" : [restart,restart, restart],
         text : "You die. ☠️"
+    },
+    {
+        name:"win",
+        "button text" : ["REPLAY?","REPLAY?","REPLAY?" ],
+        "button functions" : [restart,restart, restart],
+        text :"You defeat the dragon! YOU WIN THE GAME! 🎉"
+
     }
 
 ];
@@ -249,6 +256,10 @@ function lose(){
     update(locations[5]);
 
 }
+function winGame(){
+    update(locations[6]);
+}
+
 function defeatMonster(){
     gold += Math.floor(monsters[fighting].level * 6.7);
     xp += monsters[fighting].level;
